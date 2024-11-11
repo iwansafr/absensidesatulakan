@@ -68,7 +68,7 @@ class Karyawan extends CI_Controller
             $output[$value['id']]['profil'] = $value;
             for($i=1;$i<$totalDay;$i++){
               if(empty($output[$value['id']]['absensi'][date('Y-m-d', strtotime($year.'-'.$month.'-'.$i))])){
-                $output[$value['id']]['absensi'][date('Y-m-d', strtotime($year.'-'.$month.'-'.$i))] = 'Kosong';
+                $output[$value['id']]['absensi'][date('Y-m-d', strtotime($year.'-'.$month.'-'.$i))] = null;
                 $output[$value['id']]['profil'] = $value;
               }
             }

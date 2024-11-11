@@ -53,14 +53,21 @@
                         ?>
                         <td style="white-space: nowrap;">
                             <?php
-                            if($value['absensi'][ date('Y-m-d', strtotime($year.'-'.$month.'-'.$i)) ] != 'Kosong'){
+                            if(!empty($value['absensi'][ date('Y-m-d', strtotime($year.'-'.$month.'-'.$i)) ])){
                                 $z = 1;
-                                foreach ($value['absensi'][ date('Y-m-d', strtotime($year.'-'.$month.'-'.$i)) ] as $absensiKey => $absensiValue) {
-                                    echo substr($absensiValue['visit_time'], 11,20);
-                                    if($z == 1){
-                                        echo ' - ';
+                                if (is_array($value['absensi'][ date('Y-m-d', strtotime($year.'-'.$month.'-'.$i)) ] )) {
+                                    foreach (
+                                        $value['absensi'][ date('Y-m-d', strtotime($year.'-'.$month.'-'.$i)) ] 
+                                        as $absensiKey
+                                            => $absensiValue) {
+                                        echo substr($absensiValue['visit_time'], 11,20);
+                                        if($z == 1){
+                                            echo ' - ';
+                                        }
+                                        $z++;
                                     }
-                                    $z++;
+                                }else{
+                                    echo 'Kosong';
                                 }
                             }else{
                                 echo 'Kosong';
